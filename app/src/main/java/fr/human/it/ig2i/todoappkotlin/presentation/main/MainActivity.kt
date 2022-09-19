@@ -1,7 +1,8 @@
-package fr.human.it.ig2i.todoappkotlin
+package fr.human.it.ig2i.todoappkotlin.presentation.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
 import fr.human.it.ig2i.todoappkotlin.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -14,5 +15,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    supportFragmentManager.popBackStack()
+                }
+            }
+        )
     }
+
+
 }
