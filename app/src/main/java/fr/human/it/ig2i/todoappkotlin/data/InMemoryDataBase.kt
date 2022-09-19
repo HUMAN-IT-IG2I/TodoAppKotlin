@@ -57,4 +57,15 @@ object InMemoryDataBase {
             )
         )
 
+    fun getTaskById(id: Int): Task? {
+        return tasks.singleOrNull { it.id == id }
+    }
+
+    fun finishTask(task: Task): Boolean {
+        return getTaskById(task.id)?.let { retrievedTask ->
+            retrievedTask.finishTask()
+            true
+        } ?: false
+    }
+
 }

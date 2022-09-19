@@ -13,6 +13,7 @@ import fr.human.it.ig2i.todoappkotlin.R
 import fr.human.it.ig2i.todoappkotlin.data.model.Task
 import fr.human.it.ig2i.todoappkotlin.databinding.FragmentTaskListBinding
 import fr.human.it.ig2i.todoappkotlin.presentation.create.CreateTaskFragment
+import fr.human.it.ig2i.todoappkotlin.presentation.details.TaskDetailsFragment
 
 class TaskListFragment : Fragment() {
 
@@ -49,6 +50,15 @@ class TaskListFragment : Fragment() {
     }
 
     private fun navigateToDetails(task: Task) {
+        parentFragmentManager.beginTransaction().also { transaction ->
+            val bundle = Bundle().also {
+                it.putInt(getString(R.string.task_id_arg_name_for_details), task.id)
+            }
+            transaction.replace(R.id.fragment_container, TaskDetailsFragment::class.java, bundle, getString(R.string.task_details_fragment_title))
+            transaction.setReorderingAllowed(true)
+            transaction.addToBackStack(getString(R.string.task_details_fragment_title))
+            transaction.commit()
+        }
     }
 
     private fun navigateToCreation() {
