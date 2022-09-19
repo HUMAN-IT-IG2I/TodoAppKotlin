@@ -39,7 +39,22 @@ object InMemoryDataBase {
 
     }
 
-    val task: List<Task>
+    val tasks: List<Task>
         get() = _tasks.filter { it.isActive() }
+
+    private fun getLastUsedId(): Int {
+        if (tasks.isEmpty()) return 0
+        return _tasks.maxOf { it.id }
+    }
+
+    fun addTask(content: String) =
+        _tasks.add(
+            Task(
+                getLastUsedId() + 1,
+                content,
+                Calendar.getInstance().time,
+                true,
+            )
+        )
 
 }

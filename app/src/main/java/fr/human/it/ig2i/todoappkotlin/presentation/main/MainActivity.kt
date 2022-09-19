@@ -20,7 +20,9 @@ class MainActivity : AppCompatActivity() {
             this,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    supportFragmentManager.popBackStack()
+                    if(supportFragmentManager.backStackEntryCount > 0)
+                        supportFragmentManager.popBackStack()
+                    else finish()
                 }
             }
         )

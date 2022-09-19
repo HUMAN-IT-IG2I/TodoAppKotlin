@@ -8,12 +8,12 @@ import fr.human.it.ig2i.todoappkotlin.data.model.Task
 
 class TaskListViewModel : ViewModel() {
 
-    private val _tasks = MutableLiveData(InMemoryDataBase.task)
+    private val _tasks = MutableLiveData(InMemoryDataBase.tasks)
     val tasks: LiveData<List<Task>>
         get() = _tasks
 
     fun refreshTasks() {
-        _tasks.postValue(InMemoryDataBase.task)
+        _tasks.postValue(InMemoryDataBase.tasks)
     }
 
 }

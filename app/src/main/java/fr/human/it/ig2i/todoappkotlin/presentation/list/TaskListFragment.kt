@@ -5,10 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import fr.human.it.ig2i.todoappkotlin.R
 import fr.human.it.ig2i.todoappkotlin.data.model.Task
 import fr.human.it.ig2i.todoappkotlin.databinding.FragmentTaskListBinding
+import fr.human.it.ig2i.todoappkotlin.presentation.create.CreateTaskFragment
 
 class TaskListFragment : Fragment() {
 
@@ -48,6 +52,12 @@ class TaskListFragment : Fragment() {
     }
 
     private fun navigateToCreation() {
+        parentFragmentManager.beginTransaction().also { transaction ->
+            transaction.replace(R.id.fragment_container, CreateTaskFragment::class.java, null, getString(R.string.task_creation_error_message))
+            transaction.setReorderingAllowed(true)
+            transaction.addToBackStack(getString(R.string.task_creation_error_message))
+            transaction.commit()
+        }
     }
 
 }
