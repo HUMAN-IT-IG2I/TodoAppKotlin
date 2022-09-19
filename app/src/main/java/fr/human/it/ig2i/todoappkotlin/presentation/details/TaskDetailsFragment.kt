@@ -29,6 +29,8 @@ class TaskDetailsFragment : Fragment() {
 
         loadSelectedTask()
 
+        requireActivity().setTitle(R.string.task_details_fragment_title)
+
         return binding.root
     }
 

@@ -22,8 +22,10 @@ class CreateTaskFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentCreateTaskBinding.inflate(layoutInflater)
+
+        requireActivity().setTitle(R.string.task_creation_fragment_title)
+
         return binding.root
     }
 

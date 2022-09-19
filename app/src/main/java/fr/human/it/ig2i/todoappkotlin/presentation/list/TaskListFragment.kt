@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.human.it.ig2i.todoappkotlin.R
@@ -38,6 +36,8 @@ class TaskListFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = this@TaskListFragment.adapter
         }
+
+        requireActivity().setTitle(R.string.task_list_fragment_title)
 
         return binding.root
     }
