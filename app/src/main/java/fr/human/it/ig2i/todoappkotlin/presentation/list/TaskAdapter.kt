@@ -10,7 +10,8 @@ import fr.human.it.ig2i.todoappkotlin.databinding.TaskItemBinding
 import fr.human.it.ig2i.todoappkotlin.utils.extractDateFormatDateField
 import fr.human.it.ig2i.todoappkotlin.utils.extractTimeFormatDateField
 
-class TaskAdapter(val onTaskClicked: (Task) -> Unit) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+class TaskAdapter(val onTaskClicked: (Task) -> Unit) :
+    RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     var tasks = listOf<Task>()
         set(newTasks) {
@@ -35,7 +36,6 @@ class TaskAdapter(val onTaskClicked: (Task) -> Unit) : RecyclerView.Adapter<Task
     }
 
     override fun getItemCount() = tasks.size
-
 
     class TaskViewHolder(
         private val binding: TaskItemBinding,
@@ -71,4 +71,5 @@ class TaskAdapter(val onTaskClicked: (Task) -> Unit) : RecyclerView.Adapter<Task
             oldTasks[oldItemPosition] == newTasks[newItemPosition]
 
     }
+
 }

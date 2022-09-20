@@ -45,8 +45,8 @@ class TaskListFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.refreshTasks()
-        viewModel.tasks.observe(viewLifecycleOwner) { tasks -> adapter.tasks = tasks}
-        binding.createTaskFab.setOnClickListener { navigateToCreation()}
+        viewModel.tasks.observe(viewLifecycleOwner) { tasks -> adapter.tasks = tasks }
+        binding.createTaskFab.setOnClickListener { navigateToCreation() }
     }
 
     private fun navigateToDetails(task: Task) {
@@ -54,7 +54,12 @@ class TaskListFragment : Fragment() {
             val bundle = Bundle().also {
                 it.putInt(getString(R.string.task_id_arg_name_for_details), task.id)
             }
-            transaction.replace(R.id.fragment_container, TaskDetailsFragment::class.java, bundle, getString(R.string.task_details_fragment_title))
+            transaction.replace(
+                R.id.fragment_container,
+                TaskDetailsFragment::class.java,
+                bundle,
+                getString(R.string.task_details_fragment_title)
+            )
             transaction.setReorderingAllowed(true)
             transaction.addToBackStack(getString(R.string.task_details_fragment_title))
             transaction.commit()
@@ -63,7 +68,12 @@ class TaskListFragment : Fragment() {
 
     private fun navigateToCreation() {
         parentFragmentManager.beginTransaction().also { transaction ->
-            transaction.replace(R.id.fragment_container, CreateTaskFragment::class.java, null, getString(R.string.task_creation_error_message))
+            transaction.replace(
+                R.id.fragment_container,
+                CreateTaskFragment::class.java,
+                null,
+                getString(R.string.task_creation_error_message)
+            )
             transaction.setReorderingAllowed(true)
             transaction.addToBackStack(getString(R.string.task_creation_error_message))
             transaction.commit()
